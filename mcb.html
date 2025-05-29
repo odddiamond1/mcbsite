@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monty C. Benjamin | Hip Hop Artist</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Urbanist:wght@300;400;700&display=swap');
+        
+        :root {
+            --primary: #ff4d00;
+            --secondary: #000000;
+            --accent: #ffcc00;
+        }
+        
+        body {
+            font-family: 'Urbanist', sans-serif;
+            background-color: #000;
+            color: white;
+            overflow-x: hidden;
+        }
+        
+        .title-font {
+            font-family: 'Bebas Neue', cursive;
+        }
+        
+        .text-primary {
+            color: var(--primary);
+        }
+        
+        .bg-primary {
+            background-color: var(--primary);
+        }
+        
+        .border-primary {
+            border-color: var(--primary);
+        }
+        
+        .text-accent {
+            color: var(--accent);
+        }
+        
+        .bg-accent {
+            background-color: var(--accent);
+        }
+        
+        .border-accent {
+            border-color: var(--accent);
+        }
+        
+        .vinyl {
+            animation: spin 4s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        .menu-item {
+            position: relative;
+        }
+        
+        .menu-item::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .menu-item:hover::after {
+            width: 100%;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-bg {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed w-full bg-black bg-opacity-90 z-50 border-b border-gray-800">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <div class="w-10 h-10 rounded-full bg-primary mr-3"></div>
+                <a href="#" class="title-font text-2xl text-white">MONTY C. <span class="text-primary">BENJAMIN</span></a>
+            </div>
+            
+            <div class="hidden md:flex space-x-8">
+                <a href="#home" class="menu-item text-white hover:text-primary transition">HOME</a>
+                <a href="#music" class="menu-item text-white hover:text-primary transition">MUSIC</a>
+                <a href="#videos" class="menu-item text-white hover:text-primary transition">VIDEOS</a>
+                <!--<a href="#tour" class="menu-item text-white hover:text-primary transition">TOUR</a>-->
+                <a href="#about" class="menu-item text-white hover:text-primary transition">ABOUT</a>
+                <a href="#contact" class="menu-item text-white hover:text-primary transition">CONTACT</a>
+            </div>
+            
+            <div class="flex items-center space-x-4">
+               <a href="https://www.instagram.com/montycbenjamin/?hl=en" class="text-white hover:text-primary transition" target="_blank"><i class="fab fa-instagram text-xl"></i></a>
+            <a href="https://open.spotify.com/artist/1BjQkdrximOcvo1nqznmm0?si=Ea_-yYILTpyK1KwrPZk7tA" class="text-white hover:text-primary transition" target="_blank"><i class="fab fa-spotify text-xl"></i></a>
+            <a href="https://www.youtube.com/@khimeraEra" class="text-white hover:text-primary transition" target="_blank"><i class="fab fa-youtube text-xl"></i></a>
+            <a href="https://music.apple.com/us/artist/monty-c-benjamin/668632424" class="text-white hover:text-primary transition" target="_blank"><i class="fab fa-apple text-xl"></i></a>
+
+                
+                <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
+                    <i class="fas fa-bars text-2xl"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black py-4 px-4 border-t border-gray-800">
+            <div class="flex flex-col space-y-4">
+                <a href="#home" class="menu-item text-white hover:text-primary transition">HOME</a>
+                <a href="#music" class="menu-item text-white hover:text-primary transition">MUSIC</a>
+                <a href="#videos" class="menu-item text-white hover:text-primary transition">VIDEOS</a>
+                <!--<a href="#tour" class="menu-item text-white hover:text-primary transition">TOUR</a>-->
+                <a href="#about" class="menu-item text-white hover:text-primary transition">ABOUT</a>
+                <a href="#contact" class="menu-item text-white hover:text-primary transition">CONTACT</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+<!-- <section id="home" class="hero-bg min-h-screen flex items-center justify-center pt-20">
+        <div class="container mx-auto px-4 py-20 flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="title-font text-6xl md:text-8xl text-white mb-4">
+                    <span class="gradient-text">MONTY C.</span><br>
+                    <span class="gradient-text">BENJAMIN</span>
+                </h1>
+                <p class="text-xl text-gray-300 mb-8">Revolutionizing hip hop with raw lyricism and authentic storytelling.</p>
+                <div class="flex space-x-4">
+                    <a href="#" class="bg-primary hover:bg-orange-700 text-black font-bold py-3 px-6 rounded-full transition transform hover:scale-105">
+                        GET NOW <i class="fas fa-arrow-right ml-2"></i>
+                    </a> -->
+                    <!-- <a href="#" class="border-2 border-primary hover:bg-primary hover:bg-opacity-20 text-white font-bold py-3 px-6 rounded-full transition transform hover:scale-105">
+                        TOUR DATES
+                    </a> -->
+                <!-- </div>
+            </div>  -->
+            
+            <!-- <div class="md:w-1/2 flex justify-center relative">
+                <div class="relative w-64 h-64 md:w-80 md:h-80">
+                    <img src="https://images.unsplash.com/photo-1614680376573-df3480f0c6ff?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" 
+                         alt="Monty C. Benjamin" 
+                         class="w-full h-full object-cover rounded-full border-4 border-primary pulse">
+                    <div class="absolute -bottom-5 -right-5 bg-black p-2 rounded-full">
+                        <div class="w-16 h-16 rounded-full bg-gray-900 flex items-center justify-center vinyl">
+                            <div class="w-4 h-4 rounded-full bg-primary"></div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+        <!-- </div>
+    </section> -->
+<!-- Hero Section -->
+<section id="home" class="min-h-screen flex flex-col items-center justify-center pt-32 pb-20 bg-black">
+
+    <div class="min-w-xl w-full px-4 text-center">
+        <img src="Routine16-try3000.png" alt="Routine 16 Cover" class="mx-auto mb-8 max-w-full rounded-lg shadow-xl">
+        <a href="#" class="inline-block bg-primary hover:bg-orange-700 text-black font-bold py-3 px-8 rounded-full text-lg transition transform hover:scale-105">
+            GET NOW
+        </a>
+    </div>
+</section>
+
+    <!-- Latest Release -->
+    <section id="music" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4"> 
+            <div class="text-center mb-16">
+                <h2 class="title-font text-4xl md:text-5xl text-white mb-4">LATEST <span class="text-primary">RELEASE</span></h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 flex justify-center">
+                    <div class="relative">
+                        <img src="Routine16-try3000.png" 
+                             alt="Album Cover" 
+                             class="w-64 h-64 md:w-80 md:h-80 object-cover rounded-lg shadow-2xl">
+                        <div class="absolute -bottom-5 -right-5 bg-black p-2 rounded-full">
+                            <div class="w-16 h-16 rounded-full bg-gray-900 flex items-center justify-center vinyl">
+                                <div class="w-4 h-4 rounded-full bg-primary"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+               <div class="md:w-1/2 md:pl-10">
+    <h3 class="title-font text-3xl text-white mb-2">#ROUTINE16</h3>
+    <p class="text-gray-400 mb-6">Released: March 16, 2025</p>
+
+    <div class="mb-8">
+        <div class="flex items-center justify-between mb-2">
+            <span class="text-gray-300">1. Keys Theory</span>
+            <span class="text-gray-500">2:31</span>
+        </div>
+        <div class="flex items-center justify-between mb-2">
+            <span class="text-gray-300">2. YESSIR</span>
+            <span class="text-gray-500">2:43</span>
+        </div>
+        <div class="flex items-center justify-between mb-2">
+            <span class="text-gray-300">3. All Around</span>
+            <span class="text-gray-500">3:06</span>
+        </div>
+        <div class="flex items-center justify-between mb-2">
+            <span class="text-gray-300">4. Percy Mack</span>
+            <span class="text-gray-500">3:29</span>
+        </div>
+        <div class="flex items-center justify-between mb-2">
+            <span class="text-gray-300">5. MMMP</span>
+            <span class="text-gray-500">2:34</span>
+        </div>
+        <div class="flex items-center justify-between mb-2">
+            <span class="text-gray-300">6. Japanese Silk</span>
+            <span class="text-gray-500">3:15</span>
+        </div>
+        <div class="flex items-center justify-between mb-2">
+            <span class="text-gray-300">7. Speech</span>
+            <span class="text-gray-500">7:44</span>
+        </div>
+        <div class="flex items-center justify-between mb-2">
+            <span class="text-gray-300">8. Album Rollout</span>
+            <span class="text-gray-500">2:13</span>
+        </div>
+        <div class="flex items-center justify-between mb-2">
+            <span class="text-gray-300">9. Fingernails</span>
+            <span class="text-gray-500">2:28</span>
+        </div>
+        <div class="flex items-center justify-between mb-2">
+            <span class="text-gray-300">10. Venting Pt. II</span>
+            <span class="text-gray-500">2:15</span>
+        </div>
+        <div class="flex items-center justify-between mb-2">
+            <span class="text-gray-300">11. Felt Like Talking</span>
+            <span class="text-gray-500">4:15</span>
+        </div>
+        <div class="flex items-center justify-between mb-2">
+            <span class="text-gray-300">12. Just Be Honest</span>
+            <span class="text-gray-500">5:14</span>
+        </div>
+        <div class="flex items-center justify-between mb-2">
+            <span class="text-gray-300">13. Want Me Dead</span>
+            <span class="text-gray-500">3:43</span>
+        </div>
+        <div class="flex items-center justify-between mb-2">
+            <span class="text-gray-300">14. YBAN</span>
+            <span class="text-gray-500">2:34</span>
+        </div>
+        <div class="flex items-center justify-between mb-2">
+            <span class="text-gray-300">15. IThinkYouShouldLeave</span>
+            <span class="text-gray-500">3:09</span>
+        </div>
+        <div class="flex items-center justify-between mb-2">
+            <span class="text-gray-300">16. High Demand</span>
+            <span class="text-gray-500">2:07</span>
+        </div>
+        <div class="flex items-center justify-between">
+            <span class="text-gray-300">17. Sweet Love</span>
+            <span class="text-gray-500">3:05</span>
+        </div>
+    </div>
+
+
+                    <div class="flex flex-wrap gap-4">
+                      <!--   <a href="#" class="bg-primary hover:bg-orange-700 text-black font-bold py-2 px-4 rounded-full text-sm transition transform hover:scale-105 flex items-center">
+                            <i class="fab fa-spotify mr-2"></i> Spotify
+                        </a>
+                        <a href="#" class="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded-full text-sm transition transform hover:scale-105 flex items-center">
+                            <i class="fab fa-apple mr-2"></i> Apple Music
+                        </a>
+                        <a href="#" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full text-sm transition transform hover:scale-105 flex items-center">
+                            <i class="fab fa-youtube mr-2"></i> YouTube
+                        </a> -->
+                        <a href="#" class="bg-gray-800 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-full text-sm transition transform hover:scale-105 flex items-center">
+                            <i class="fas fa-shopping-cart mr-2"></i> Get Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- Videos Section -->
+    <!-- <section id="videos" class="py-20 bg-black">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="title-font text-4xl md:text-5xl text-white mb-4">VIDEO <span class="text-primary">VISUALS</span></h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="group relative overflow-hidden rounded-lg shadow-lg transition transform hover:scale-105">
+                    <div class="relative pb-[56.25%]">
+                        <a href="https://youtu.be/zPHvl1pYlA4"></a>
+                        <img src="https://images.unsplash.com/photo-1470225620780-dba8ba36b745?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Video Thumbnail" 
+                             class="absolute h-full w-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                            <div class="w-16 h-16 rounded-full bg-primary bg-opacity-80 flex items-center justify-center">
+                                <i class="fas fa-play text-2xl text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 p-4">
+                        <h3 class="text-white font-bold">Concrete Dreams</h3>
+                        <p class="text-gray-400 text-sm">Official Music Video</p>
+                    </div>
+                </div>
+                
+                <div class="group relative overflow-hidden rounded-lg shadow-lg transition transform hover:scale-105">
+                    <div class="relative pb-[56.25%]">
+                        <img src="https://images.unsplash.com/photo-1496293455970-f8581aae0e3b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1413&q=80" 
+                             alt="Video Thumbnail" 
+                             class="absolute h-full w-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                            <div class="w-16 h-16 rounded-full bg-primary bg-opacity-80 flex items-center justify-center">
+                                <i class="fas fa-play text-2xl text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 p-4">
+                        <h3 class="text-white font-bold">Midnight Sermons</h3>
+                        <p class="text-gray-400 text-sm">Official Music Video</p>
+                    </div>
+                </div>
+                
+                <div class="group relative overflow-hidden rounded-lg shadow-lg transition transform hover:scale-105">
+                    <div class="relative pb-[56.25%]">
+                        <img src="https://images.unsplash.com/photo-1501612780327-45045538702b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Video Thumbnail" 
+                             class="absolute h-full w-full object-cover">
+                        <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                            <div class="w-16 h-16 rounded-full bg-primary bg-opacity-80 flex items-center justify-center">
+                                <i class="fas fa-play text-2xl text-white"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-900 p-4">
+                        <h3 class="text-white font-bold">Neon Psalms</h3>
+                        <p class="text-gray-400 text-sm">Live Performance</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block border-2 border-primary hover:bg-primary hover:bg-opacity-20 text-white font-bold py-3 px-8 rounded-full transition transform hover:scale-105">
+                    VIEW ALL VIDEOS <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section> -->
+    <!-- Videos Section -->
+<section class="py-20 bg-black" id="videos">
+<div class="container mx-auto px-4">
+<div class="text-center mb-16">
+<h2 class="title-font text-4xl md:text-5xl text-white mb-4">VIDEO <span class="text-primary">VISUALS</span></h2>
+<div class="w-20 h-1 bg-primary mx-auto"></div>
+</div>
+
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="text-center">
+<div class="aspect-w-16 aspect-h-9">
+<iframe allowfullscreen="" class="w-full h-64" frameborder="0" src="https://www.youtube.com/embed/zPHvl1pYlA4"></iframe>
+</div>
+<div class="bg-gray-900 p-4">
+<h3 class="text-white font-bold">"Album Rollout"</p>
+<p class="text-gray-400 text-sm">On the Corner Live Performance</p>
+</div>
+</div>
+<div class="text-center">
+<div class="aspect-w-16 aspect-h-9">
+<iframe allowfullscreen="" class="w-full h-64" frameborder="0" src="https://www.youtube.com/embed/ZH5TEMd2eto"></iframe>
+</div>
+<div class="bg-gray-900 p-4">
+<h3 class="text-white font-bold">"REVENG3 (Drunk Freestyle)"</p>
+<p class="text-gray-400 text-sm">Official Vid</p>
+</div>
+</div>
+<div class="text-center">
+<div class="aspect-w-16 aspect-h-9">
+<iframe allowfullscreen="" class="w-full h-64" frameborder="0" src="https://www.youtube.com/embed/U2pkTl5vIBc"></iframe>
+</div>
+<div class="bg-gray-900 p-4">
+<h3 class="text-white font-bold">"Sixty Before Six"</p>
+<p class="text-gray-400 text-sm">Official Vid</p>
+</div>
+</div>
+
+<div class="col-span-full text-center mt-12">
+    <a href="#" class="inline-block border-2 border-primary hover:bg-primary hover:bg-opacity-20 text-white font-bold py-3 px-8 rounded-full transition transform hover:scale-105">
+        VIEW ALL VIDEOS <i class="fas fa-arrow-right ml-2"></i>
+    </a>
+</div>
+</div>
+    <!-- Tour Dates --
+    <section id="tour" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="title-font text-4xl md:text-5xl text-white mb-4">TOUR <span class="text-primary">DATES</span></h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+            </div>
+            
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-gray-800 rounded-lg overflow-hidden mb-6">
+                    <div class="p-6 flex flex-col md:flex-row items-center justify-between">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-xl font-bold text-white">STREET PROPHET TOUR</h3>
+                            <p class="text-gray-400">New York, NY</p>
+                        </div>
+                        <div class="mb-4 md:mb-0">
+                            <p class="text-gray-300">July 15, 2023</p>
+                            <p class="text-gray-400">The Bowery Ballroom</p>
+                        </div>
+                        <a href="#" class="bg-primary hover:bg-orange-700 text-black font-bold py-2 px-6 rounded-full transition transform hover:scale-105">
+                            TICKETS
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 rounded-lg overflow-hidden mb-6">
+                    <div class="p-6 flex flex-col md:flex-row items-center justify-between">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-xl font-bold text-white">STREET PROPHET TOUR</h3>
+                            <p class="text-gray-400">Los Angeles, CA</p>
+                        </div>
+                        <div class="mb-4 md:mb-0">
+                            <p class="text-gray-300">July 22, 2023</p>
+                            <p class="text-gray-400">The Roxy Theatre</p>
+                        </div>
+                        <a href="#" class="bg-primary hover:bg-orange-700 text-black font-bold py-2 px-6 rounded-full transition transform hover:scale-105">
+                            TICKETS
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 rounded-lg overflow-hidden mb-6">
+                    <div class="p-6 flex flex-col md:flex-row items-center justify-between">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-xl font-bold text-white">STREET PROPHET TOUR</h3>
+                            <p class="text-gray-400">Chicago, IL</p>
+                        </div>
+                        <div class="mb-4 md:mb-0">
+                            <p class="text-gray-300">July 29, 2023</p>
+                            <p class="text-gray-400">Subterranean</p>
+                        </div>
+                        <a href="#" class="bg-primary hover:bg-orange-700 text-black font-bold py-2 px-6 rounded-full transition transform hover:scale-105">
+                            TICKETS
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-800 rounded-lg overflow-hidden">
+                    <div class="p-6 flex flex-col md:flex-row items-center justify-between">
+                        <div class="mb-4 md:mb-0">
+                            <h3 class="text-xl font-bold text-white">STREET PROPHET TOUR</h3>
+                            <p class="text-gray-400">Atlanta, GA</p>
+                        </div>
+                        <div class="mb-4 md:mb-0">
+                            <p class="text-gray-300">August 5, 2023</p>
+                            <p class="text-gray-400">The Masquerade</p>
+                        </div>
+                        <a href="#" class="bg-primary hover:bg-orange-700 text-black font-bold py-2 px-6 rounded-full transition transform hover:scale-105">
+                            TICKETS
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <a href="#" class="inline-block border-2 border-primary hover:bg-primary hover:bg-opacity-20 text-white font-bold py-3 px-8 rounded-full transition transform hover:scale-105">
+                    VIEW ALL TOUR DATES <i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+<section id="about" class="py-20 bg-black">
+    <div class="container mx-auto px-4">
+        <div class="flex flex-col md:flex-row items-center">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <img src="mcbbb.png" 
+                     alt="Monty C. Benjamin" 
+                     class="w-full rounded-lg shadow-2xl">
+            </div>
+            
+            <div class="md:w-1/2 md:pl-12">
+                <h2 class="title-font text-4xl md:text-5xl text-white mb-6">ABOUT <span class="text-primary">MONTY</span></h2>
+                <div class="w-20 h-1 bg-primary mb-6"></div>
+                
+                <p class="text-gray-300 mb-4">
+                    Born Dale James Montgomery III, Monty C. Benjamin is an American hip-hop recording artist from Cincinnati, Ohio. Since the age of 12, Monty has been using his talents, charisma, and stage presence everywhere from battle raps to talent shows.
+                </p>
+                
+                <p class="text-gray-300 mb-4">
+                    In 2009, Benjamin dropped his first project entitled <strong>Nuthin Major</strong>, which was an ode to Cincinnati's diversity over industry beats. Released completely independent, the tape produced a modest internet following thereafter, earning several positive reviews on various hip-hop blogs.
+                </p>
+                
+                <p class="text-gray-300 mb-4">
+                    The year 2011 brought Monty further into mainstream hip-hop when he released his first single <strong>Like This</strong>, and was invited to perform at the SXSW Music Festival at the Illmore Mansion where he caught the eyes and ears of many renowned producers, including Arkane Beats and Khimera Records, under which he later released his next few projects.
+                </p>
+                
+                <p class="text-gray-300 mb-6">
+                    Five years later, Monty has become more polished and versatile, with a slew of performances, projects, and awards to back that up. Currently, Monty is gearing up to release his newest project entitled <strong>In. Confidence</strong>.
+                </p>
+                
+                <div class="flex space-x-4">
+                  <a href="#" class="bg-primary hover:bg-orange-700 text-black font-bold py-2 px-6 rounded-full transition transform hover:scale-105">
+                        FULL BIO
+                    </a>
+                    <a href="#" class="border-2 border-primary hover:bg-primary hover:bg-opacity-20 text-white font-bold py-2 px-6 rounded-full transition transform hover:scale-105">
+                        PRESS KIT
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="title-font text-4xl md:text-5xl text-white mb-4">GET IN <span class="text-primary">TOUCH</span></h2>
+                <div class="w-20 h-1 bg-primary mx-auto"></div>
+            </div>
+            
+            <div class="max-w-3xl mx-auto bg-gray-800 rounded-lg overflow-hidden shadow-lg">
+                <div class="p-8">
+                    <form>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                            <div>
+                                <label for="name" class="block text-gray-300 mb-2">Name</label>
+                                <input type="text" id="name" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-300 mb-2">Email</label>
+                                <input type="email" id="email" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary">
+                            </div>
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="subject" class="block text-gray-300 mb-2">Subject</label>
+                            <input type="text" id="subject" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary">
+                        </div>
+                        
+                        <div class="mb-6">
+                            <label for="message" class="block text-gray-300 mb-2">Message</label>
+                            <textarea id="message" rows="5" class="w-full bg-gray-700 border border-gray-600 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="w-full bg-primary hover:bg-orange-700 text-black font-bold py-3 px-6 rounded-lg transition transform hover:scale-105">
+                            SEND MESSAGE
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="bg-black p-8">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-envelope text-xl text-black"></i>
+                            </div>
+                            <h3 class="text-white font-bold mb-2">Email</h3>
+                            <p class="text-gray-400">mcbmgmt1@gmail.com</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-phone-alt text-xl text-black"></i>
+                            </div>
+                            <h3 class="text-white font-bold mb-2">Management</h3>
+                            <p class="text-gray-400">+1 (513) 504-4041</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <div class="w-12 h-12 bg-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                                <i class="fas fa-map-marker-alt text-xl text-black"></i>
+                            </div>
+                            <h3 class="text-white font-bold mb-2">Location</h3>
+                            <p class="text-gray-400">Cincinnati, OH</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter -->
+    <section class="py-16 bg-black border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto text-center">
+                <h2 class="title-font text-3xl md:text-4xl text-white mb-4">JOIN THE <span class="text-primary">MONTY ARMY</span></h2>
+                <p class="text-gray-400 mb-8">Subscribe to get exclusive updates, early access to tickets, and behind-the-scenes content.</p>
+                
+                <form class="flex flex-col md:flex-row gap-4 max-w-lg mx-auto">
+                    <input type="email" placeholder="Your email address" class="flex-grow bg-gray-800 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-primary">
+                    <button type="submit" class="bg-primary hover:bg-orange-700 text-black font-bold py-3 px-6 rounded-lg transition transform hover:scale-105">
+                        SUBSCRIBE
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+<!-- Signature Section
+
+</section> -->
+    <!-- Footer -->
+    <footer class="bg-black py-12 border-t border-gray-800">
+        <div class="container mx-auto px-4">
+            <!-- <div class="flex flex-col md:flex-row justify-between items-center"> -->
+                <div class="flex flex-col items-center space-y-6 text-center">
+ <div class="container mx-auto px-4">
+        <div class="flex justify-center">
+            <img src="MontySignature.png" alt="Monty C. Benjamin Signature" class="h-32 object-contain">
+        </div>
+    </div>
+                <div class="mb-6 md:mb-0">
+                    <div class="flex items-center">
+                        <!-- <div class="w-10 h-10 rounded-full bg-primary mr-3"></div> -->
+                         <!-- <section class="bg-black py-5"> -->
+   
+                        <a href="#" class="title-font text-2xl text-white">MONTY C. <span class="text-primary">BENJAMIN</span></a>
+                    </div>
+                </div>
+                
+                <div class="flex space-x-6 mb-6 md:mb-0">
+                  <a href="https://www.instagram.com/montycbenjamin/?hl=en" class="text-gray-400 hover:text-primary transition" target="_blank"><i class="fab fa-instagram text-xl"></i></a>
+<a href="https://twitter.com/montycbenjamin" class="text-gray-400 hover:text-primary transition" target="_blank"><i class="fab fa-twitter text-xl"></i></a>
+<a href="https://open.spotify.com/artist/1BjQkdrximOcvo1nqznmm0?si=Ea_-yYILTpyK1KwrPZk7tA" class="text-gray-400 hover:text-primary transition" target="_blank"><i class="fab fa-spotify text-xl"></i></a>
+<a href="https://www.youtube.com/@khimeraEra" class="text-gray-400 hover:text-primary transition" target="_blank"><i class="fab fa-youtube text-xl"></i></a>
+<a href="https://music.apple.com/us/artist/monty-c-benjamin/668632424" class="text-gray-400 hover:text-primary transition" target="_blank"><i class="fab fa-apple text-xl"></i></a>               </div>
+                
+                <div class="text-gray-500 text-sm">
+                    &copy; 2025 Monty C. Benjamin. All Rights Reserved.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Close mobile menu if open
+                    const mobileMenu = document.getElementById('mobile-menu');
+                    mobileMenu.classList.add('hidden');
+                    
+                    // Scroll to target
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add shadow to navbar on scroll
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('shadow-lg');
+            } else {
+                nav.classList.remove('shadow-lg');
+            }
+        });
+    </script>
+
+</body>
+</html>
