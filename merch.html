@@ -15,11 +15,17 @@
             --accent: #FFFFFF;
         }
         
+        html, body {
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+        
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: #f8f8f8;
             color: var(--primary);
-            /* overflow-x: hidden; */
+            /* overflow-x: hidden; */ /* Remove this comment to avoid double declaration */
         }
         
         .title-font {
@@ -479,14 +485,13 @@
                 
                 <div>
                     <h3 class="title-font text-lg mb-4">CONTACT</h3>
-                    <address class="not-italic text-gray-400">
-                        <p>Dream<sup>8</sup></p>
-                        <p>Cincinnati, OH 45039</p>
-                        <p class="mt-2">Email: <a href="mailto:dream8mgmt@gmail.com" class="hover:text-white">dream8mgmt@gmail.com</a></p>
-                        <p>Phone: +1 (513) 504-4041</p>
-                    </address>
+                    <ul class="space-y-2 break-words max-w-xs sm:max-w-none">
+                        <li class="break-words"><span class="whitespace-normal">Dream<sup>8</sup></span></li>
+                        <li class="break-words"><span class="whitespace-normal">Cincinnati, OH 45039</span></li>
+                        <li class="break-words"><span class="whitespace-normal">dream8mgmt@gmail.com</span></li>
+                        <li class="break-words"><span class="whitespace-normal">Phone: +1 (513) 504-4041</span></li>
+                    </ul>
                 </div>
-            </div>
             
             <div class="mt-12 border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center">
                 <p class="text-gray-400 text-sm">
